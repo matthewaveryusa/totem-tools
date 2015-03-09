@@ -1,6 +1,6 @@
 {
   "name": "totem-tools",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Totem utility functions",
   "main": "./src/tools.js",
   "scripts": {
@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/totemlabs/totem-api.git"
+    "url": "https://github.com/matthewaveryusa/totem-tools.git"
   },
   "author": "Matthew Avery & Zenon Parker",
   "license": "Private, Totem Labs LLC all rights reserved.",
   "bugs": {
-    "url": "https://github.com/totemlabs/totem-api/issues"
+    "url": "https://github.com/matthewaveryusa/totem-tools/issues"
   },
-  "homepage": "https://github.com/totemlabs/totem-api",
+  "homepage": "https://github.com/matthewaveryusa/totem-tools",
   "dependencies" : {
     "lodash":"*"
   },
