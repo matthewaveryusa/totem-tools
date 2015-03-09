@@ -1,0 +1,28 @@
+{
+  "name": "totem-tools",
+  "version": "0.0.7",
+  "description": "Totem utility functions",
+  "main": "./src/tools.js",
+  "scripts": {
+    "pretest": "rm -rf coverage",
+    "test": "istanbul cover _mocha -- --recursive -R spec",
+    "posttest": "istanbul check-coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/totemlabs/totem-api.git"
+  },
+  "author": "Matthew Avery & Zenon Parker",
+  "license": "Private, Totem Labs LLC all rights reserved.",
+  "bugs": {
+    "url": "https://github.com/totemlabs/totem-api/issues"
+  },
+  "homepage": "https://github.com/totemlabs/totem-api",
+  "dependencies" : {
+    "lodash":"*"
+  },
+  "devDependencies": {
+    "should":"*",
+    "sinon":"*"
+  }
+}

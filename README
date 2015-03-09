@@ -1,0 +1,7 @@
+#test
+npm prune
+npm install
+npm test
+#deploy
+npm pack
+aws s3 cp $(jq -r .name package.json)-$(jq -r .version package.json) s3://totem-deploy/npm/$(jq -r .name package.json)-$(jq -r .version package.json)
