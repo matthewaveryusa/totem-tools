@@ -239,10 +239,12 @@ exports.InputError = InputError;
 
 function sessionExists(redis,sessionString,callback) {
   if(!_.isString(sessionString)) { return process.nextTick(function(){callback(new ClientError(400,'invalidSessionString'));}); }
-  redis.get('session:'+sessionString,function getSessionFromCache(err,data){
+  redis.hgetall('session:'+sessionString,function getSessionFromCache(err,data){
     if(err) { return callback(err);}
     if(data === null) { return callback(new ClientError(401,'invalidSession'));}
-    callback(null, {userId:data});
+    data.session = sessionString;
+    data.userId = Number(data.userId);
+    callback(null, data);
   });
 }
 exports.sessionExists = sessionExists;
