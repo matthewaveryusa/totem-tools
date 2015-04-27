@@ -267,3 +267,14 @@ function nest(object,parentName,children) {
   });
 }
 exports.nest = nest;
+
+function getStack(){
+    var orig = Error.prepareStackTrace;
+    Error.prepareStackTrace = function(_, stack){ return stack; };
+    var err = new Error;
+    Error.captureStackTrace(err, arguments.callee);
+    var stack = err.stack;
+    Error.prepareStackTrace = orig;
+    return stack;
+}
+exports.getStack = getStack;
