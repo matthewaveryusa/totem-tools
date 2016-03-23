@@ -19,12 +19,12 @@ exports.empty = empty;
  */
 function datetimeMs(date) {
   return [date.getUTCFullYear(), '-',
-    _.padLeft(date.getUTCMonth() + 1, 2, '0'), '-',
-    _.padLeft(date.getUTCDate(), 2, '0'), ' ',
-    _.padLeft(date.getUTCHours(), 2, '0'), ':',
-    _.padLeft(date.getUTCMinutes(), 2, '0'), ':',
-    _.padLeft(date.getUTCSeconds(), 2, '0'), ':',
-    _.padLeft(date.getUTCMilliseconds(), 3, '0')].join('');
+    _.padStart(date.getUTCMonth() + 1, 2, '0'), '-',
+    _.padStart(date.getUTCDate(), 2, '0'), ' ',
+    _.padStart(date.getUTCHours(), 2, '0'), ':',
+    _.padStart(date.getUTCMinutes(), 2, '0'), ':',
+    _.padStart(date.getUTCSeconds(), 2, '0'), ':',
+    _.padStart(date.getUTCMilliseconds(), 3, '0')].join('');
 }
 exports.datetimeMs = datetimeMs;
 
