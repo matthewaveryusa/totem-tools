@@ -217,25 +217,23 @@ function isEmailBasicallyValid(email) {
 
 exports.isEmailBasicallyValid = isEmailBasicallyValid;
 
-function ClientError(status,errorCode) {
-  this.status = status;
-  this.errorCode = errorCode;
+class ClientError {
+  constructor(status,errorCode) {
+    this.status = status;
+    this.errorCode = errorCode;
+  }
 }
-
-ClientError.prototype.constructor = ClientError;
 
 exports.ClientError = ClientError;
 
-function InputError(details) {
-  this.status = 422;
-  this.errorCode = 'invalidInput';
-  this.details = details;
+class InputError {
+  constructor(details) {
+    this.status = 422;
+    this.errorCode = 'invalidInput';
+    this.details = details;
+  }
 }
-
-InputError.prototype.InputError = InputError;
-
 exports.InputError = InputError;
-
 
 function sessionExists(redis,sessionString,callback) {
   if(!_.isString(sessionString)) { return process.nextTick(function(){callback(new ClientError(400,'invalidSessionString'));}); }
