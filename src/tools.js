@@ -217,29 +217,30 @@ function isEmailBasicallyValid(email) {
 
 exports.isEmailBasicallyValid = isEmailBasicallyValid;
 
-class ClientError {
-  constructor(status,errorCode) {
-    this.status = status;
-    this.errorCode = errorCode;
-  }
+function makeClientError(status, errorCode) {
+  return { 'status': status, 'errorCode':errorCode };
 }
+exports.makeClientError = makeClientError;
 
-exports.ClientError = ClientError;
-
-class InputError {
-  constructor(details) {
-    this.status = 422;
-    this.errorCode = 'invalidInput';
-    this.details = details;
-  }
+function makeInputError(details) {
+    return {'status':422,
+            'errorCode': 'invalidInput',
+            'clientDetails': details };
 }
-exports.InputError = InputError;
+exports.makeInputError = makeInputError;
+
+function makeServerError(details) {
+    return {'status':500,
+            'errorCode': 'internalError',
+            'serverDetails': details };
+}
+exports.makeServerError = makeServerError;
 
 function sessionExists(redis,sessionString,callback) {
-  if(!_.isString(sessionString)) { return process.nextTick(function(){callback(new ClientError(400,'invalidSessionString'));}); }
+  if(!_.isString(sessionString)) { return process.nextTick(function(){callback(makeClientError(400,'invalidSessionString'));}); }
   redis.hgetall('session:'+sessionString,function getSessionFromCache(err,data){
     if(err) { return callback(err);}
-    if(data === null) { return callback(new ClientError(401,'invalidSession'));}
+    if(data === null) { return callback(makeClientError(401,'invalidSession'));}
     data.session = sessionString;
     data.userId = Number(data.userId);
     callback(null, data);
@@ -269,7 +270,7 @@ exports.nest = nest;
 function getStack(){
     var orig = Error.prepareStackTrace;
     Error.prepareStackTrace = function(_, stack){ return stack; };
-    var err = new Error;
+    var err = new Error();
     Error.captureStackTrace(err, arguments.callee);
     var stack = err.stack;
     Error.prepareStackTrace = orig;

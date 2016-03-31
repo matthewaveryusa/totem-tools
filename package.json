@@ -1,6 +1,6 @@
 {
   "name": "totem-tools",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Totem utility functions",
   "main": "./src/tools.js",
   "scripts": {
